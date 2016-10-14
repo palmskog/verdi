@@ -67,7 +67,7 @@ Hypothesis tot_map_output_injective :
   forall o o', tot_map_output o = tot_map_output o' -> o = o'.
 
 Lemma tot_map_name_injective : 
-forall n n', tot_map_name n = tot_map_name n' -> n = n'.
+forall (jkjksdsd : nat) n n', tot_map_name n = tot_map_name n' -> n = n'.
 Proof using tot_map_name_inv_inverse.
 move => n n'.
 case (name_eq_dec n n') => H_dec //.
@@ -108,7 +108,7 @@ by rewrite tot_map_name_inv_inverse in H_dec.
 Qed.
 
 Corollary tot_map_update_packet_eq :
-forall f p d,
+forall (sdjdjks : nat) f p d,
   (fun n : name => tot_map_data (update f (pDst p) d (tot_map_name_inv n))) =
   (update (fun n : name => tot_map_data (f (tot_map_name_inv n))) (pDst (tot_map_packet p)) (tot_map_data d)).
 Proof using tot_map_name_inverse_inv tot_map_name_inv_inverse.
@@ -118,7 +118,7 @@ exact: tot_map_update_eq.
 Qed.
 
 Lemma tot_map_packet_app_eq :
-  forall l p ms ms',
+  forall (sdjsdjks : nat) l p ms ms',
     map tot_map_packet (map (fun m : name * msg => {| pSrc := pDst p; pDst := fst m; pBody := snd m |}) l ++ ms ++ ms') = 
     map (fun m : name * msg => {| pSrc := pDst (tot_map_packet p); pDst := fst m; pBody := snd m |}) (tot_map_name_msgs l) ++ map tot_map_packet ms ++ map tot_map_packet ms'.
 Proof using.
