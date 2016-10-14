@@ -34,7 +34,7 @@ proofalytics-aux: Makefile.coq
 	$(MAKE) -f Makefile.coq
 
 TASK_DEPS='core/Simulations.vio'
-TASK_COMMAND='$$(COQC) $$(COQDEBUG) $$(COQFLAGS) -check-vio-tasks 10,2,3,7 core/Simulations'
+TASK_COMMAND='$$(COQC) $$(COQDEBUG) $$(COQFLAGS) -check-vio-tasks 10,2,3,7,8 core/Simulations'
 Makefile.coq: hacks _CoqProject
 	test -s _CoqProject || { echo "Run ./configure before running make"; exit 1; }
 	coq_makefile -f _CoqProject -o Makefile.coq -extra sim-task $(TASK_DEPS) $(TASK_COMMAND)

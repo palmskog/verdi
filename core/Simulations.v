@@ -13,6 +13,8 @@ Require Import mathcomp.ssreflect.ssreflect.
 
 Set Implicit Arguments.
 
+Ltac subst := idtac.
+
 Class BaseParamsTotMap (P0 : BaseParams) (P1 : BaseParams) := 
   {
     tot_map_data : @data P0 -> @data P1 ;
