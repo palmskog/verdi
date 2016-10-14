@@ -15,6 +15,12 @@ endif
 default: Makefile.coq
 	$(MAKE) -f Makefile.coq
 
+quick: Makefile.coq
+	$(MAKE) -f Makefile.coq quick
+
+sim-task: Makefile.coq
+	$(MAKE) -f Makefile.coq sim-task
+
 proofalytics:
 	$(MAKE) -C proofalytics clean
 	$(MAKE) -C proofalytics
@@ -27,9 +33,11 @@ proofalytics-aux: Makefile.coq
 	mv Makefile.coq_tmp Makefile.coq
 	$(MAKE) -f Makefile.coq
 
+TASK_DEPS='core/Simulations.vio'
+TASK_COMMAND='$$(COQC) $$(COQDEBUG) $$(COQFLAGS) -check-vio-tasks 10 core/Simulations'
 Makefile.coq: hacks _CoqProject
 	test -s _CoqProject || { echo "Run ./configure before running make"; exit 1; }
-	coq_makefile -f _CoqProject -o Makefile.coq
+	coq_makefile -f _CoqProject -o Makefile.coq -extra sim-task $(TASK_DEPS) $(TASK_COMMAND)
 
 hacks: raft/RaftState.v
 
